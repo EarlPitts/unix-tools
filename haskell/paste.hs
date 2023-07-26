@@ -8,11 +8,8 @@ type FileName = String
 main :: IO ()
 main = do
   args <- getArgs
-  cs <- readFiles args
+  cs <- mapM readFile args
   putStrLn $ paste cs
-
-readFiles :: [FileName] -> IO [FileContent]
-readFiles fs = do mapM readFile fs
 
 extend :: [[String]] -> [[String]]
 extend fileLines = fmap appendEmpty fileLines
